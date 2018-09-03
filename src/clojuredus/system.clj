@@ -20,7 +20,7 @@
    (component/using
     (pedestal/new-pedestal)
     [:service-map :db])
-   
+
    :db
    (component/using
     (postgres/new-database)
