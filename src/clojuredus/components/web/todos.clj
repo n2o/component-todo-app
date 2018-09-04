@@ -3,7 +3,7 @@
 
 (kc/defentity todo
   (kc/table :todos)
-  (kc/entity-fields :title :done))
+  (kc/entity-fields :id :title :done))
 
 (defn create-table! []
   (kc/exec-raw "CREATE TABLE IF NOT EXISTS todos(id SERIAL, title TEXT NOT NULL, done BOOLEAN DEFAULT FALSE NOT NULL)"))
@@ -20,10 +20,8 @@
 (defn delete! [id]
   (kc/delete todo (kc/where {:id id})))
 
-(defn toggle! [id done]
-  (kc/update todo
-             (kc/set-fields {:done (not done)})
-             (kc/where {:id id})))
+(defn toggle! [id]
+  (kc/exec-raw (format "UPDATE todos SET done = NOT done WHERE id = %s" id)))
 
 (defn query-all []
   (kc/select todo))
