@@ -6,8 +6,11 @@
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [com.stuartsierra/component "0.3.2"]
 
+                 [hiccup "1.0.5"]
+
                  [org.clojure/java.jdbc "0.7.8"]
                  [org.postgresql/postgresql "42.2.4"]
+                 [org.xerial/sqlite-jdbc "3.21.0"]
                  [korma "0.4.3"]
 
                  [io.pedestal/pedestal.service "0.5.4"]
