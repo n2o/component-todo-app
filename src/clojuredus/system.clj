@@ -5,26 +5,25 @@
             [clojuredus.components.web.routes :as routes]
             [clojuredus.components.db.postgres :as postgres]))
 
+(defn- build-service-map [env]
+  {:env env
+   ::http/routes routes/routes
+   ::http/type :jetty
+   ::http/port 8080
+   ::http/resource-path "/public"
+   ::http/join? false})
+
+(def db-config
+  {:db       "clojure"
+   :user     "clojure"
+   :password "clojure"})
+
 (defn system [env]
   (component/system-map
-   :service-map {:env env
-                 ::http/routes routes/routes
-                 ::http/type   :jetty
-                 ::http/port   8890
-                 ::http/join?  false}
-   :db-config {:db       "clojure"
-               :user     "clojure"
-               :password "clojure"}
-
-   :web
-   (component/using
-    (pedestal/new-pedestal)
-    [:service-map :db])
-
-   :db
-   (component/using
-    (postgres/new-database)
-    [:db-config])))
+   ;; System-Map definieren
+   ;; :db hat eine Abhängigkeit zu db-config
+   ;; :web hat eine Abhängigkeit zu service-map und db
+   ))
 
 (comment
   (def mysystem (component/start (system {})))
