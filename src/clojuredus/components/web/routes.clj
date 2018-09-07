@@ -12,6 +12,5 @@
     ["/todo/toggle" :post (conj common-interceptors `views/toggle-todo) :route-name :todo-toggle]
     ["/greet" :get views/respond-hello :route-name :greet]})
 
-
 (def url-for (route/url-for-routes
               (route/expand-routes routes)))
