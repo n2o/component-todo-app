@@ -25,5 +25,5 @@
   ;; :profiles {:dev {:aliases {"run-dev" ["trampoline" "run" "-m" "clojuredus.server/run-dev"]}
   ;;                  :dependencies [[io.pedestal/pedestal.service-tools "0.5.4"]]}
   ;;            :uberjar {:aot [clojuredus.server]}}
-  ;; :main ^{:skip-aot true} clojuredus.server
+  :main ^{:skip-aot true} clojuredus.system
   )

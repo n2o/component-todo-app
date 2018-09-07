@@ -33,8 +33,13 @@
     (pedestal/new-pedestal)
     [:db :service-map])))
 
+(defn -main [& args]
+  (component/start (system {})))
+
 (comment
   (def mysystem (component/start (system {})))
   (component/stop mysystem)
   mysystem
   )
+
+
