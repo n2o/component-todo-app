@@ -20,10 +20,18 @@
 
 (defn system [env]
   (component/system-map
-   ;; System-Map definieren
-   ;; :db hat eine Abhängigkeit zu db-config
-   ;; :web hat eine Abhängigkeit zu service-map und db
-   ))
+   :service-map (build-service-map env)
+   :db-config db-config
+
+   :db
+   (component/using
+    (postgres/new-database)
+    [:db-config])
+
+   :web
+   (component/using
+    (pedestal/new-pedestal)
+    [:db :service-map])))
 
 (comment
   (def mysystem (component/start (system {})))
